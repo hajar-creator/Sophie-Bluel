@@ -1,6 +1,7 @@
 // Récupération des travaux depuis le fichier JSON
 const reponse = await fetch('http://localhost:5678/api/works');
 const works = await reponse.json();
+console.log(works);
 
 function genererWorks(works){
      for(let i=0; i<works.length; i++){
