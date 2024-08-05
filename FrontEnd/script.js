@@ -5,6 +5,7 @@ async function getWorks() {
   return works;
 }
 const works = await getWorks();
+console.log(works);
 
 //Fonction pour récupérer les travaux de l'API et les afficher sur le site
 function genererWorks(works) {
@@ -58,7 +59,41 @@ async function genererBtnCategories() {
     //On insère la div contenant les boutons avant les travaux
     const galleryDiv = document.querySelector("#portfolio .gallery");
     galleryDiv.parentNode.insertBefore(divBtns, galleryDiv);
+
+    //On récupère tous les boutons de la div
+    const allBtns = divBtns.querySelectorAll("button");
+    //On ajoute un écouteur d'évènements pour chaque bouton
+    allBtns.forEach((button) => {
+      button.addEventListener("click", function () {
+        //On supprime la classe "btn-selected" de tous les boutons
+        for (let i = 0; i < allBtns.length; i++) {
+          allBtns[i].classList.remove("btn-selected");
+        }
+        //On ajoute la classe "btn-selected" que sur le bouton auquel s'applique l'eventListener
+        button.classList.add("btn-selected");
+
+        //filtrage des catégories
+        const categorie = this.textContent;
+        console.log(categorie);
+        filtrerCategories(categorie, works);
+      });
+    });
   });
 }
 // On affiche les boutons en appelant la fonction
 genererBtnCategories();
+
+//Fonction pour filtrer les catégories
+async function filtrerCategories(categorie, works) {
+  const sectionGallery = document.querySelector(".gallery");
+  sectionGallery.innerHTML = "";
+
+  if (categorie === "Tous") {
+    genererWorks(works);
+  } else {
+    const travauxFiltrees = works.filter(function (work) {
+      return work.category.name === categorie;
+    });
+    genererWorks(travauxFiltrees);
+  }
+}
