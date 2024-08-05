@@ -37,6 +37,12 @@
   width: 178px;
 }
 
+/*style pour login page d'accueil*/
+.login__index {
+  text-decoration: none;
+  color: black;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -372,4 +378,15 @@ footer nav ul {
 #login a {
   color: #3d3d3d;
   margin-top: 1em;
+}
+
+/*Message erreur*/
+.erreur-login {
+  background-color: #b90000;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  width: 359px;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */
