@@ -8,6 +8,7 @@ const works = await getWorks();
 
 //Fonction pour récupérer les travaux de l'API et les afficher sur le site
 function genererWorks(works) {
+  // Boucle forEach pour l'affichage des travaux
   works.forEach((work) => {
     //Récupération de l'élément DOM qui accueillera les fiches
     const sectionGallery = document.querySelector(".gallery");
@@ -28,3 +29,36 @@ function genererWorks(works) {
 
 // On appelle la fonction genererWorks(works) pour afficher les travaux
 genererWorks(works);
+
+// Fonction pour créations des boutons des filtres
+async function genererBtnCategories() {
+  //Création des conteneurs pour les boutons et ajout du btn "Tous"
+  const divBtns = document.createElement("div");
+  divBtns.className = "btns";
+  const buttonTous = document.createElement("button");
+  buttonTous.className = "btn btn-selected";
+  buttonTous.textContent = "Tous";
+  //On rattache le btn "Tous" à la div qui l'aberge'
+  divBtns.appendChild(buttonTous);
+
+  //Récupération de l'API catégories pour obtenir les noms du reste des boutons
+  const group = await fetch("http://localhost:5678/api/categories");
+  const categories = await group.json();
+
+  //Récupération de la section qui a pour id "gallery"
+  const gallerySection = document.getElementById("portfolio");
+  // Boucle forEach pour la création et l'affichage du reste des boutons
+  categories.forEach((categorie) => {
+    const categorieBtns = document.createElement("button");
+    categorieBtns.className = "btn";
+    categorieBtns.textContent = categorie.name;
+    //On rattache les boutons à la dic qui aberge les boutons puis à la section "gallery"
+    divBtns.appendChild(categorieBtns);
+    gallerySection.appendChild(divBtns);
+    //On insère la div contenant les boutons avant les travaux
+    const galleryDiv = document.querySelector("#portfolio .gallery");
+    galleryDiv.parentNode.insertBefore(divBtns, galleryDiv);
+  });
+}
+// On affiche les boutons en appelant la fonction
+genererBtnCategories();
