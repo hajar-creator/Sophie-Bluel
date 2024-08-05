@@ -1,0 +1,32 @@
+/*style boutons*/
+.btns {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.btn {
+  border-width: 1px;
+  border-radius: 60px;
+  border-color: #1d6154;
+  font-family: "Syne";
+  font-weight: 700;
+  height: 37px;
+  background-color: white;
+  margin-right: 10px;
+}
+.btn-selected {
+  background-color: #1d6154;
+  color: white;
+  border: #1d6154;
+}
+.btn-all {
+  width: 100px;
+}
+.btn-objet {
+  width: 100px;
+}
+.btn-appart {
+  width: 157px;
+}
+.btn-hotels {
+  width: 178px;
+}

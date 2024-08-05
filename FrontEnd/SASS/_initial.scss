@@ -1,46 +1,8 @@
-/*style boutons*/
-.btns {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.btn {
-  border-width: 1px;
-  border-radius: 60px;
-  border-color: #1d6154;
-  font-family: "Syne";
-  font-weight: 700;
-  height: 37px;
-  background-color: white;
-  margin-right: 10px;
-}
-
-.btn-selected {
-  background-color: #1d6154;
-  color: white;
-  border: #1d6154;
-}
-
-.btn-all {
-  width: 100px;
-}
-
-.btn-objet {
-  width: 100px;
-}
-
-.btn-appart {
-  width: 157px;
-}
-
-.btn-hotels {
-  width: 178px;
-}
-
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
+
 html,
 body,
 div,
@@ -129,7 +91,6 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -144,21 +105,17 @@ nav,
 section {
   display: block;
 }
-
 body {
   line-height: 1;
 }
-
 ol,
 ul {
   list-style: none;
 }
-
 blockquote,
 q {
   quotes: none;
 }
-
 blockquote:before,
 blockquote:after,
 q:before,
@@ -166,12 +123,10 @@ q:after {
   content: "";
   content: none;
 }
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 /** end reset css**/
 body {
   max-width: 1140px;
@@ -179,13 +134,11 @@ body {
   font-family: "Work Sans";
   font-size: 14px;
 }
-
 header {
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
 }
-
 section {
   margin: 50px 0;
 }
@@ -211,13 +164,11 @@ h2 {
   font-size: 30px;
   color: #1d6154;
 }
-
 nav ul {
   display: flex;
   align-items: center;
   list-style-type: none;
 }
-
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
@@ -226,16 +177,13 @@ nav li {
 li:hover {
   color: #b1663c;
 }
-
 #introduction {
   display: flex;
   align-items: center;
 }
-
 #introduction figure {
   flex: 1;
 }
-
 #introduction img {
   display: block;
   margin: auto;
@@ -245,7 +193,6 @@ li:hover {
 #introduction article {
   flex: 1;
 }
-
 #introduction h2 {
   margin-bottom: 1em;
 }
@@ -253,12 +200,10 @@ li:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
-
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
 }
-
 .gallery {
   width: 100%;
   display: grid;
@@ -270,20 +215,16 @@ li:hover {
 .gallery img {
   width: 100%;
 }
-
 #contact {
   width: 50%;
   margin: auto;
 }
-
 #contact > * {
   text-align: center;
 }
-
 #contact h2 {
   margin-bottom: 20px;
 }
-
 #contact form {
   text-align: left;
   margin-top: 30px;
@@ -297,17 +238,15 @@ li:hover {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
 #contact label {
   margin: 2em 0 1em 0;
 }
-
 #contact textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type=submit] {
+input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -322,4 +261,4 @@ footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 2em;
-}/*# sourceMappingURL=style.css.map */
+}
