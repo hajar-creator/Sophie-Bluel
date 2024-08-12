@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //Fonction pour ouvrir la modale
   function openModal() {
-    const modifierIcone = document.querySelector(".modifier .fa-solid");
+    const modifierIcone = document.querySelector(".modifier");
     modifierIcone.addEventListener("click", function () {
       console.log("cliqué");
       const modal = document.querySelector(".modal");
