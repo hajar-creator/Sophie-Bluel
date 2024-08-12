@@ -204,6 +204,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
 
+  //fonction pour afficher les catégories dans le menu déroulant
+  async function displayModalCategories() {
+    const select = document.querySelector(".form__content--select");
+    const group = await fetch("http://localhost:5678/api/categories");
+    const categories = await group.json();
+
+    categories.forEach((category) => {
+      const option = document.createElement("option");
+      option.value = category.id;
+      option.innerText = category.name;
+      select.appendChild(option);
+    });
+  }
+  displayModalCategories();
   //fonctoion pour faire apparaitre modale pour ajouter une oeuvre
   function changeModal() {
     const buttonModal = document.querySelector(".modal__content--button");
@@ -227,4 +241,29 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   changeModal();
+
+  //fonction pour prévisualiser une image dans la modale
+  function previewImage() {
+    const previewImg = document.querySelector(".form__content img");
+    const previewLabel = document.querySelector(".form__content--label");
+    const previewInput = document.querySelector(".form__content--input");
+    const previexIcon = document.querySelector(".form__content i");
+    const previewText = document.querySelector(".form__content p");
+
+    previewInput.addEventListener("change", function () {
+      const file = previewInput.files[0];
+      if (file.type.match("image.*")) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+          previewImg.style.display = "block";
+          previewLabel.style.display = "none";
+          previexIcon.style.display = "none";
+          previewText.style.display = "none";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+  previewImage();
 });
