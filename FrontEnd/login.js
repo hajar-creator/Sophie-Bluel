@@ -1,7 +1,7 @@
 //
 document.addEventListener("DOMContentLoaded", (event) => {
   console.log("test");
-
+  event.preventDefault();
   //Fonction pour envoyer requête à l'API pour se connecter au mode édition
   async function submitForm() {
     const form = document.querySelector("form");

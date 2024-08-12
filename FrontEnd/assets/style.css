@@ -428,12 +428,22 @@ footer nav ul {
   border: 1px solid #888;
   width: 630px;
   height: 670px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 .modal__content--title {
-  font-family: "Wors Sans";
+  font-family: "Work Sans";
   font-size: 26px;
   text-align: center;
   font-weight: 400;
+  margin: 20px 0px;
+}
+.modal__content--container {
+  width: 65%;
+  display: flex;
 }
 .modal__content--button {
   width: 237px;
@@ -445,6 +455,8 @@ footer nav ul {
   font-family: "Syne";
   font-size: 14px;
   font-weight: 700;
+  margin-top: 20px;
+  cursor: pointer;
 }
 .modal__content--slash {
   width: 420px;
@@ -454,5 +466,7 @@ footer nav ul {
 .modal__content--icon {
   color: black;
   float: right;
-  font-size: 28px;
+  font-size: 22px;
+  align-self: flex-end;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
