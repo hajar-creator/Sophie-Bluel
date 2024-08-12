@@ -206,6 +206,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //fonctoion pour faire apparaitre modale pour ajouter une oeuvre
   function changeModal() {
-    const buttonModal = document.querySelector(".");
+    const buttonModal = document.querySelector(".modal__content--button");
+    const modalAddPic = document.querySelector(".add");
+    const modal = document.querySelector(".modal");
+    const arrowLeft = document.querySelector(".add__content--arrow");
+    const xmark = document.querySelector(".add__content--xmark");
+    const closeModal = document.querySelector(".modals");
+
+    buttonModal.addEventListener("click", function () {
+      modalAddPic.style.display = "block";
+      modal.style.display = "block";
+    });
+    arrowLeft.addEventListener("click", function () {
+      modalAddPic.style.display = "none";
+      modal.style.display = "block";
+    });
+    xmark.addEventListener("click", function () {
+      modalAddPic.style.display = "none";
+      modal.style.display = "none";
+    });
   }
+  changeModal();
 });
