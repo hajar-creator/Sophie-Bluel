@@ -108,6 +108,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
   closeModal();
 
+  //Fermer la modale quand l'utilisateur clique en dehors de la modale
+  function outsideClick() {
+    const modal = document.querySelector(".modal");
+    modal.addEventListener("click", function (e) {
+      if (e.target.className == "modal") {
+        modal.style.display = "none";
+      }
+    });
+  }
+  outsideClick();
   //Si l'utilisateur n'est pas connecté
   function loggedOutAdminMode() {
     let token = sessionStorage.removeItem("token");
