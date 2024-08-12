@@ -55,10 +55,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //Si utilisateur connecté
   function displayAdminMode() {
     let token = sessionStorage.getItem("token");
+    const header = document.querySelector("header");
     console.log(token);
     if (token) {
       //Ajouter bannière
-      const header = document.querySelector("header");
       const addBanner = document.createElement("div");
       addBanner.className = "banner";
       addBanner.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       //Changer texte login à logout
       const login = document.querySelector(".login__index");
-      login.innerHTML = `<a href="login.html" class="login__index"><li>logout</li></a>`;
+      login.innerHTML = `<li>logout</li>`;
 
       //Enlever les boutons et ajouter icone édition
       const boutons = document.querySelector(".boutons");
@@ -107,4 +107,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   closeModal();
+
+  //Si l'utilisateur n'est pas connecté
+  function loggedOutAdminMode() {
+    let token = sessionStorage.removeItem("token");
+    let isLoggedOut = !!token;
+    if (isLoggedOut) {
+      //enlever bannière
+      const banner = document.querySelector(".banner");
+      banner.remove();
+    }
+  }
+  loggedOutAdminMode();
 });
