@@ -1,4 +1,5 @@
-//
+//importer fonctions et modules de script.js
+//import { getWorks } from "./script.js";
 document.addEventListener("DOMContentLoaded", (event) => {
   console.log("test");
   event.preventDefault();
@@ -129,4 +130,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
   loggedOutAdminMode();
+
+  //Ajouter les travaux à la modale
+  async function addWorks() {
+    const modalContainer = document.querySelector(".modal__content--container");
+    modalContainer.innerHTML = "";
+    // const works = await getWorks();
+    // console.log(works);
+
+    const travail = await fetch("http://localhost:5678/api/works");
+    const works = await travail.json();
+    works.forEach((work) => {
+      //création d'une balise dédiée à chaque oeuvre
+      const figure = document.createElement("figure");
+      // Création des balises img + leur contenu
+      const image = document.createElement("img");
+      image.src = work.imageUrl;
+      const div = document.createElement("div");
+      div.className = "trash-icon";
+      const trashIcon = document.createElement("i");
+      trashIcon.className = "fa-solid fa-trash-can";
+      trashIcon.id = work.id;
+
+      //On rattache les balises à la section gallery
+      div.appendChild(trashIcon);
+      figure.appendChild(image);
+      figure.appendChild(div);
+      modalContainer.appendChild(figure);
+    });
+  }
+  addWorks();
 });

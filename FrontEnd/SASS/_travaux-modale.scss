@@ -30,10 +30,6 @@
       font-weight: 400;
       margin: 20px 0px;
     }
-    &--container {
-      width: 65%;
-      display: flex;
-    }
 
     &--button {
       width: 237px;
@@ -53,6 +49,7 @@
       width: 420px;
       height: 1px;
       color: #b3b3b3;
+      margin-bottom: 30px;
     }
 
     &--icon {
@@ -61,6 +58,40 @@
       font-size: 22px;
       align-self: flex-end;
       cursor: pointer;
+    }
+  }
+}
+
+/*Modale container figures*/
+
+.modal__content--container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 65%;
+  height: 60%;
+  gap: 20px;
+
+  & figure {
+    flex: 1;
+    position: relative;
+  }
+  & figure img {
+    height: 104px;
+  }
+  & figure div {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: black;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    & i {
+      color: white;
     }
   }
 }

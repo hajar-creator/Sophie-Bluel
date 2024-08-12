@@ -441,10 +441,6 @@ footer nav ul {
   font-weight: 400;
   margin: 20px 0px;
 }
-.modal__content--container {
-  width: 65%;
-  display: flex;
-}
 .modal__content--button {
   width: 237px;
   height: 36px;
@@ -462,6 +458,7 @@ footer nav ul {
   width: 420px;
   height: 1px;
   color: #b3b3b3;
+  margin-bottom: 30px;
 }
 .modal__content--icon {
   color: black;
@@ -469,4 +466,36 @@ footer nav ul {
   font-size: 22px;
   align-self: flex-end;
   cursor: pointer;
+}
+
+/*Modale container figures*/
+.modal__content--container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 65%;
+  height: 60%;
+  gap: 20px;
+}
+.modal__content--container figure {
+  flex: 1;
+  position: relative;
+}
+.modal__content--container figure img {
+  height: 104px;
+}
+.modal__content--container figure div {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  background-color: black;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.modal__content--container figure div i {
+  color: white;
 }/*# sourceMappingURL=style.css.map */
