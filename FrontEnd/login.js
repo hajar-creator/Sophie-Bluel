@@ -158,6 +158,49 @@ document.addEventListener("DOMContentLoaded", (event) => {
       figure.appendChild(div);
       modalContainer.appendChild(figure);
     });
+    deleteWork();
   }
   addWorks();
+
+  //Fonction pour supprimer une oeuvre de la modale
+  function deleteWork() {
+    const trashIcons = document.querySelectorAll(".fa-trash-can");
+    console.log(trashIcons);
+    trashIcons.forEach((trash) => {
+      trash.addEventListener("click", (e) => {
+        const id = trash.id;
+        const token = sessionStorage.getItem("token");
+
+        const init = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        };
+        fetch("http://localhost:5678/api/works/" + id, init)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.log("Le delete n'a pas fonctionné");
+            }
+          })
+          .then((data) => {
+            console.log(
+              "Le travail a bien été supprimé, voici la data : ",
+              data
+            );
+            // On récupère les oeuvres et on les affiche dans la modale
+            addWorks();
+          })
+          .catch((error) => {
+            console.error(
+              "Erreur lors de la suppression de l'oeuvre : ",
+              error
+            );
+          });
+      });
+    });
+  }
 });

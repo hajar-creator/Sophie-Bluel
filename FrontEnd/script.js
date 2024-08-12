@@ -5,7 +5,6 @@ async function getWorks() {
   return works;
 }
 const works = await getWorks();
-console.log(works);
 
 //Fonction pour récupérer les travaux de l'API et les afficher sur le site
 function genererWorks(works) {
