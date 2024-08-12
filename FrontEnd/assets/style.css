@@ -499,4 +499,125 @@ footer nav ul {
 .modal__content--container figure div i {
   color: white;
   font-size: 12px;
+}
+
+/*modale pour ajouter photos*/
+.add {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.add__content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 630px;
+  height: 670px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.add__content--arrow {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.add__content--xmark {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.add__content--title {
+  font-family: "Work Sans";
+  font-size: 26px;
+  text-align: center;
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+  height: 70%;
+  gap: 10px;
+}
+.form__content {
+  background-color: #e8f1f6;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+.form__content--label {
+  background-color: #cbd6dc;
+  border-radius: 50px;
+  width: 173px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #306685;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.form__content--input {
+  display: none;
+}
+.form__content--img {
+  color: #b9c5cc;
+  font-size: 5em;
+  margin-bottom: 7px;
+}
+.form__content label {
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 14px;
+  color: #3d3d3d;
+}
+.form__content--button {
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  border: none;
+  background-color: #a7a7a7;
+  color: white;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 20px;
+  cursor: pointer;
+  align-self: center;
+}
+
+.form input[type=text] {
+  width: 100%;
+  height: 51px;
+  border: none;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.0901960784);
+}
+
+.form select {
+  width: 100%;
+  height: 51px;
+  border: none;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.0901960784);
 }/*# sourceMappingURL=style.css.map */

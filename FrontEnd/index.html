@@ -68,15 +68,49 @@
             <button class="btn btn-hotels">Hotels & restaurants</button>
         </div> -->
 
-        <div class="modal">
-          <div class="modal__content">
-            <i class="fa-solid fa-xmark modal__content--icon"></i>
-            <h3 class="modal__content--title">Galerie photo</h3>
-            <div class="modal__content--container"></div>
-            <div class="modal__content--slash"></div>
-            <button class="modal__content--button" type="submit">
-              Ajouter une photo
-            </button>
+        <div class="modals">
+          <div class="modal">
+            <div class="modal__content">
+              <i class="fa-solid fa-xmark modal__content--icon"></i>
+              <h3 class="modal__content--title">Galerie photo</h3>
+              <div class="modal__content--container"></div>
+              <div class="modal__content--slash"></div>
+              <button class="modal__content--button" type="submit">
+                Ajouter une photo
+              </button>
+            </div>
+          </div>
+          <div class="add">
+            <div class="add__content">
+              <i class="fa-solid fa-xmark add__content--xmark"></i>
+              <i class="fa-solid fa-arrow-left add__content--arrow"></i>
+              <h3 class="add__content--title">Ajout photo</h3>
+              <form class="form">
+                <div class="form__content">
+                  <i class="fa-regular fa-image form__content--img"></i>
+                  <label class="form__content--label" for="file"
+                    >+ Ajouter photo</label
+                  >
+                  <input
+                    type="file"
+                    id="file"
+                    name="file"
+                    class="form__content--input"
+                    required
+                  />
+                  <img src="#" alt="Aperçu de l'image" />
+                  <p class="form__content--text">jpg, png : 4mo max</p>
+                </div>
+                <label for="title">Titre</label>
+                <input type="text" id="title" name="title" required />
+                <label for="category">Catégorie</label>
+                <select name="category" id="category"></select>
+                <div class="form__content--slash"></div>
+                <button class="form__content--button" type="submit">
+                  Valider
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         <div class="gallery">

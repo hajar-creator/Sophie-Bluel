@@ -203,4 +203,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
       });
     });
   }
+
+  //fonctoion pour faire apparaitre modale pour ajouter une oeuvre
+  function changeModal() {
+    const buttonModal = document.querySelector(".");
+  }
 });
