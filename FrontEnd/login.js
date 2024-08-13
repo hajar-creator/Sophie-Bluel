@@ -1,7 +1,6 @@
 //importer fonctions et modules de script.js
 //import { getWorks } from "./script.js";
 document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("test");
   event.preventDefault();
   //Fonction pour envoyer requête à l'API pour se connecter au mode édition
   async function submitForm() {
@@ -57,7 +56,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function displayAdminMode() {
     let token = sessionStorage.getItem("token");
     const header = document.querySelector("header");
-    console.log(token);
     if (token) {
       //Ajouter bannière
       const addBanner = document.createElement("div");
@@ -72,7 +70,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       //Enlever les boutons et ajouter icone édition
       const boutons = document.querySelector(".boutons");
-      console.log(boutons);
       boutons.remove();
 
       const modifier = document.createElement("div");
@@ -91,7 +88,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function openModal() {
     const modifierIcone = document.querySelector(".modifier");
     modifierIcone.addEventListener("click", function () {
-      console.log("cliqué");
       const modal = document.querySelector(".modal");
       modal.style.display = "block";
     });
@@ -112,8 +108,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //Fermer la modale quand l'utilisateur clique en dehors de la modale
   function outsideClick() {
     const modal = document.querySelector(".modal");
+    const add = document.querySelector(".add");
+    console.log(modal);
     modal.addEventListener("click", function (e) {
       if (e.target.className == "modal") {
+        modal.style.display = "none";
+      }
+    });
+    add.addEventListener("click", function (e) {
+      if (e.target.className == "add") {
+        add.style.display = "none";
         modal.style.display = "none";
       }
     });
@@ -121,13 +125,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
   outsideClick();
   //Si l'utilisateur n'est pas connecté
   function loggedOutAdminMode() {
-    let token = sessionStorage.removeItem("token");
-    let isLoggedOut = !!token;
-    if (isLoggedOut) {
-      //enlever bannière
-      const banner = document.querySelector(".banner");
-      banner.remove();
-    }
+    const logout = document.querySelector(".login__index li:last-child");
+    logout.addEventListener("click", function () {
+      sessionStorage.removeItem("token");
+      window.location.href = "index.html";
+
+      const header = document.querySelector("header");
+      header.style.marginTop = "0";
+    });
   }
   loggedOutAdminMode();
 
@@ -165,7 +170,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //Fonction pour supprimer une oeuvre de la modale
   function deleteWork() {
     const trashIcons = document.querySelectorAll(".fa-trash-can");
-    console.log(trashIcons);
     trashIcons.forEach((trash) => {
       trash.addEventListener("click", (e) => {
         const id = trash.id;
@@ -282,7 +286,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         imageUrl: previewImage.src,
         categoryId: category.value,
       };
-      const chargeUtile = json.stringify(donnees);
+      const chargeUtile = JSON.stringify(donnees);
       const answer = await fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {

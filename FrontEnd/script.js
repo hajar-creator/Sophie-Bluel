@@ -66,7 +66,6 @@ async function genererBtnCategories() {
   const gallerySection = document.getElementById("portfolio");
   // Boucle forEach pour la création et l'affichage du reste des boutons
   categories.forEach((categorie) => {
-    console.log(categorie);
     const categorieBtns = document.createElement("button");
     categorieBtns.className = "btn";
     categorieBtns.textContent = categorie.name;
@@ -80,7 +79,6 @@ async function genererBtnCategories() {
     console.log(divBtns);
     //On récupère tous les boutons de la div
     const allBtns = divBtns.querySelectorAll("button");
-
     categorieBtns.addEventListener("click", function () {
       //On supprime la classe "btn-selected" de tous les boutons
       const allBtns = divBtns.querySelectorAll("button");
