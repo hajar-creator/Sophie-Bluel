@@ -109,7 +109,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function outsideClick() {
     const modal = document.querySelector(".modal");
     const add = document.querySelector(".add");
-    console.log(modal);
     modal.addEventListener("click", function (e) {
       if (e.target.className == "modal") {
         modal.style.display = "none";
@@ -283,7 +282,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const token = sessionStorage.getItem("token");
       const donnees = {
         titre: title.value,
-        imageUrl: previewImage.src,
+        imageUrl: image.src,
         categoryId: category.value,
       };
       const chargeUtile = JSON.stringify(donnees);
@@ -295,7 +294,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         },
         body: chargeUtile,
       })
-        .then(answer.JSON())
+        .then((response) => response.json())
         .then((data) => {
           console.log(data);
           console.log("Le travail a bien été ajouté : ", data);
@@ -303,5 +302,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
     });
   }
+
   addImage();
 });
