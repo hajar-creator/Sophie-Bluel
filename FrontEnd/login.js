@@ -266,4 +266,38 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   previewImage();
+
+  //Ajout d'une image dans la base de données
+  function addImage() {
+    const form = document.querySelector(".form");
+    const title = document.querySelector(".form #title");
+    const category = document.querySelector(".form #category");
+    const image = document.querySelector(".form__content--img");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const token = sessionStorage.getItem("token");
+      const donnees = {
+        titre: title.value,
+        imageUrl: previewImage.src,
+        categoryId: category.value,
+      };
+      const chargeUtile = json.stringify(donnees);
+      const answer = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: chargeUtile,
+      })
+        .then(answer.JSON())
+        .then((data) => {
+          console.log(data);
+          console.log("Le travail a bien été ajouté : ", data);
+          addWorks();
+        });
+    });
+  }
+  addImage();
 });
