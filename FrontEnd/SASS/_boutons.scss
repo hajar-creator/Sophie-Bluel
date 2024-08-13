@@ -36,3 +36,18 @@
   text-decoration: none;
   color: black;
 }
+
+/*modifier*/
+.modifier {
+  cursor: pointer;
+  margin-bottom: 1.5em;
+  display: flex;
+  gap: 10px;
+}
+.modify {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}

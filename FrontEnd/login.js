@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       modifier.className = "modifier";
       modifier.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>
         <span>modifier</span>`;
-      const portfolio = document.querySelector("#portfolio");
+      const portfolio = document.querySelector(".modify");
       portfolio.prepend(modifier);
     }
   }

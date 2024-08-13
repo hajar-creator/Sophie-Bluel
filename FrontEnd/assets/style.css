@@ -44,6 +44,22 @@
   color: black;
 }
 
+/*modifier*/
+.modifier {
+  cursor: pointer;
+  margin-bottom: 1.5em;
+  display: flex;
+  gap: 10px;
+}
+
+.modify {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
