@@ -1,8 +1,9 @@
-@charset "UTF-8";
 /*style boutons*/
-.boutons {
-  text-align: center;
-  margin-bottom: 50px;
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+  gap: 10px;
 }
 
 .btn {
@@ -11,53 +12,39 @@
   border-color: #1d6154;
   font-family: "Syne";
   font-weight: 700;
-  height: 37px;
+  padding: 8px 10px;
   background-color: white;
-  margin-right: 10px;
+  cursor: pointer;
 }
 
 .btn-selected {
   background-color: #1d6154;
   color: white;
   border: #1d6154;
-}
-
-.btn-all {
-  width: 100px;
-}
-
-.btn-objet {
-  width: 100px;
-}
-
-.btn-appart {
-  width: 157px;
-}
-
-.btn-hotels {
-  width: 178px;
+  cursor: pointer;
 }
 
 /*style pour login page d'accueil*/
-.login__index {
+.link {
   text-decoration: none;
   color: black;
 }
 
 /*modifier*/
-.modifier {
-  cursor: pointer;
-  margin-bottom: 1.5em;
-  display: flex;
-  gap: 10px;
-}
-
 .modify {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.5em;
   gap: 30px;
+}
+
+.modifier {
+  cursor: pointer;
+  margin-bottom: 1.6em;
+  display: flex;
+  gap: 15px;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -207,8 +194,6 @@ header {
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
-  /*modification pour la bannière*/
-  margin-top: 80px;
 }
 
 section {
@@ -440,7 +425,6 @@ footer nav ul {
 .modal__content {
   background-color: #fefefe;
   margin: 15% auto;
-  padding: 20px;
   border: 1px solid #888;
   width: 630px;
   height: 670px;
@@ -455,7 +439,7 @@ footer nav ul {
   font-size: 26px;
   text-align: center;
   font-weight: 400;
-  margin: 20px 0px;
+  margin: 50px 0px;
 }
 .modal__content--button {
   width: 237px;
@@ -471,14 +455,17 @@ footer nav ul {
   cursor: pointer;
 }
 .modal__content--slash {
-  width: 100%;
+  width: 420px;
   height: 1px;
-  color: #b3b3b3;
+  background-color: #b3b3b3;
+  text-align: center;
   margin-bottom: 30px;
 }
 .modal__content--icon {
   color: black;
-  float: right;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   font-size: 22px;
   align-self: flex-end;
   cursor: pointer;
@@ -486,24 +473,24 @@ footer nav ul {
 
 /*Modale container figures*/
 .modal__content--container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   width: 65%;
   height: 60%;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 12px;
 }
 .modal__content--container figure {
-  flex: 1;
   position: relative;
 }
 .modal__content--container figure img {
   height: 104px;
+  width: 76.86px;
 }
 .modal__content--container figure div {
   position: absolute;
   top: 5px;
-  right: 15px;
+  right: 5px;
+  font-size: 12px;
   background-color: black;
   width: 17px;
   height: 17px;
@@ -514,7 +501,6 @@ footer nav ul {
 }
 .modal__content--container figure div i {
   color: white;
-  font-size: 12px;
 }
 
 /*modale pour ajouter photos*/
@@ -532,7 +518,6 @@ footer nav ul {
 .add__content {
   background-color: #fefefe;
   margin: 15% auto;
-  padding: 20px;
   border: 1px solid #888;
   width: 630px;
   height: 670px;
@@ -544,15 +529,15 @@ footer nav ul {
 }
 .add__content--arrow {
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: 20px;
+  left: 20px;
   font-size: 18px;
   cursor: pointer;
 }
 .add__content--xmark {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   font-size: 18px;
   cursor: pointer;
 }
@@ -561,8 +546,8 @@ footer nav ul {
   font-size: 26px;
   text-align: center;
   font-weight: 400;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 .form {
@@ -609,6 +594,12 @@ footer nav ul {
   font-size: 14px;
   color: #3d3d3d;
 }
+.form__content--slash {
+  width: 100%;
+  height: 1px;
+  background-color: #b3b3b3;
+  margin-top: 30px;
+}
 .form__content--button {
   width: 237px;
   height: 36px;
@@ -622,12 +613,6 @@ footer nav ul {
   margin-top: 20px;
   cursor: pointer;
   align-self: center;
-}
-.form__content--slash {
-  width: 100%;
-  height: 1px;
-  background-color: #b3b3b3;
-  margin-top: 30px;
 }
 
 .form input[type=text] {

@@ -20,16 +20,16 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script type="module" src="script.js" defer></script>
-    <script type="module" src="login.js"></script>
+    <script type="module" src="logged.js"></script>
   </head>
   <body>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
-          <li>projets</li>
+          <a class="link index" href="index.html"><li>projets</li></a>
           <li>contact</li>
-          <a href="login.html" class="login__index"><li>login</li></a>
+          <a class="link login" href="login.html"><li>login</li></a>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -62,13 +62,7 @@
         <div class="modify">
           <h2>Mes Projets</h2>
         </div>
-        <div class="boutons"></div>
-        <!-- <div class="btns">
-            <button class="btn btn-all">Tous</button>
-            <button class="btn btn-objet">Objets</button>
-            <button class="btn btn-appart">Appartements</button>
-            <button class="btn btn-hotels">Hotels & restaurants</button>
-        </div> -->
+        <div class="buttons"></div>
 
         <div class="modals">
           <div class="modal">
@@ -82,6 +76,7 @@
               </button>
             </div>
           </div>
+
           <div class="add">
             <div class="add__content">
               <i class="fa-solid fa-xmark add__content--xmark"></i>
@@ -123,16 +118,7 @@
             </div>
           </div>
         </div>
-        <div class="gallery">
-          <!-- <figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure> -->
-        </div>
+        <div class="gallery"></div>
       </section>
       <section id="contact">
         <h2>Contact</h2>

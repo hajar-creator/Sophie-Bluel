@@ -13,7 +13,6 @@
   &__content {
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 20px;
     border: 1px solid #888;
     width: 630px;
     height: 670px;
@@ -28,7 +27,7 @@
       font-size: 26px;
       text-align: center;
       font-weight: 400;
-      margin: 20px 0px;
+      margin: 50px 0px;
     }
 
     &--button {
@@ -46,15 +45,18 @@
     }
 
     &--slash {
-      width: 100%;
+      width: 420px;
       height: 1px;
-      color: #b3b3b3;
+      background-color: #b3b3b3;
+      text-align: center;
       margin-bottom: 30px;
     }
 
     &--icon {
       color: black;
-      float: right;
+      position: absolute;
+      top: 20px;
+      right: 20px;
       font-size: 22px;
       align-self: flex-end;
       cursor: pointer;
@@ -65,24 +67,24 @@
 /*Modale container figures*/
 
 .modal__content--container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   width: 65%;
   height: 60%;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 12px;
 
   & figure {
-    flex: 1;
     position: relative;
   }
   & figure img {
     height: 104px;
+    width: 76.86px;
   }
   & figure div {
     position: absolute;
     top: 5px;
-    right: 15px;
+    right: 5px;
+    font-size: 12px;
     background-color: black;
     width: 17px;
     height: 17px;
@@ -92,7 +94,6 @@
     cursor: pointer;
     & i {
       color: white;
-      font-size: 12px;
     }
   }
 }
