@@ -56,7 +56,9 @@ async function genererBtnCategories() {
     filtrerCategories(categorie, works);
   });
   //On rattache le btn "Tous" à la div qui l'aberge'
-  divBtns.appendChild(buttonTous);
+  if (divBtns != null) {
+    divBtns.appendChild(buttonTous);
+  }
 
   //Récupération de l'API catégories pour obtenir les noms du reste des boutons
   const group = await fetch("http://localhost:5678/api/categories");
