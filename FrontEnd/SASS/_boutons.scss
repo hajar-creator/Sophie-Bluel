@@ -43,3 +43,14 @@
   display: flex;
   gap: 15px;
 }
+
+/*Message erreur modale*/
+.msg-error {
+  background-color: #b90000;
+  color: white;
+  padding: 10px 0px;
+  font-weight: 500;
+  width: 100%;
+  align-self: center;
+  text-align: center;
+}

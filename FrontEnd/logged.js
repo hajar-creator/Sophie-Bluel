@@ -161,15 +161,12 @@ function deleteWork() {
       fetch("http://localhost:5678/api/works/" + id, init)
         .then((response) => {
           if (response.ok) {
-            return response.json();
+            console.log(response);
+            console.log("Le travail a bien été supprimé");
+            addWorks();
           } else {
             console.log("Le delete n'a pas fonctionné");
           }
-        })
-        .then((data) => {
-          console.log("Le travail a bien été supprimé, voici la data : ", data);
-          // On récupère les oeuvres et on les affiche dans la modale
-          addWorks();
         })
         .catch((error) => {
           console.error("Erreur lors de la suppression de l'oeuvre : ", error);
@@ -260,3 +257,44 @@ function addImage() {
 }
 
 addImage();
+
+//Fonction pour vérifier que tous les inputs du formulaire sont remplis
+
+function validateForm() {
+  const buttonForm = document.querySelector(".form button");
+  const form = document.querySelector(".form");
+  form.addEventListener("input", function () {
+    const title = document.getElementById("title").value;
+    const category = document.getElementById("category").value;
+    const fileInput = document.getElementById("file").files.length;
+
+    //Vérifier s'il y a déjà un message d'erreur
+    let errorMessage = document.querySelector(".msg-error");
+
+    if (title && category && fileInput) {
+      buttonForm.classList.add("valid");
+      buttonForm.disabled = false;
+
+      //Supprimer le message d'erreur s'il existe
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    } else {
+      buttonForm.classList.remove("valid");
+      buttonForm.disabled = false;
+
+      //Ajouter un message d'erreur s'il n'existe pas
+      if (!errorMessage) {
+        const modalTitle = (document.querySelector(
+          ".add__content--title"
+        ).style.marginBottom = "20px");
+        errorMessage = document.createElement("p");
+        errorMessage.className = "msg-error";
+        errorMessage.innerText = "Veuillez remplir tous les champs";
+        document.querySelector(".form").prepend(errorMessage);
+      }
+    }
+  });
+}
+
+validateForm();
