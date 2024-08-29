@@ -161,7 +161,6 @@ function deleteWork() {
       fetch("http://localhost:5678/api/works/" + id, init)
         .then((response) => {
           if (response.ok) {
-            console.log(response);
             console.log("Le travail a bien été supprimé");
             addWorks();
           } else {

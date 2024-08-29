@@ -6,6 +6,7 @@ export async function getWorks() {
 }
 
 const works = await getWorks();
+console.log(works);
 
 //Récupérer les catégories à partir du backend
 
