@@ -19,7 +19,7 @@ export async function getCategories() {
 const categories = await getCategories();
 
 // Fonction pour afficher les travaux
-function displayWorks(works) {
+export function displayWorks(works) {
   works.forEach((work) => {
     //Récupération de l'élément DOM qui accueillera les fiches
     const sectionGallery = document.querySelector(".gallery");

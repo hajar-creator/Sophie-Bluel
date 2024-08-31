@@ -1,6 +1,6 @@
-import { getWorks, getCategories } from "./script.js";
+import { getWorks, getCategories, displayWorks } from "./script.js";
 //Si utilisateur connecté
-function displayAdminMode() {
+function displayAminMode() {
   let token = sessionStorage.getItem("token");
   const header = document.querySelector("header");
 
@@ -9,95 +9,90 @@ function displayAdminMode() {
     const addBanner = document.createElement("div");
     addBanner.className = "banner";
     addBanner.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>
-          <span>Mode édition</span>`;
-    header.prepend(addBanner);
-    header.style.marginTop = "80px";
+    <span>Mode édition</span>`;
+    header.prepend(addBanner); //Ajouter style au header
 
-    //Changer texte login à logout
+    header.style.marginTop = "80px"; //changer texte login à logout
+
     const login = document.querySelector(".login");
-    login.innerHTML = `<li>logout</li>`;
+    login.innerHTML = `<li>logout</li>`; //enlever les boutons et ajouter icone édition
 
-    //Enlever les boutons et ajouter icone édition
     const boutons = document.querySelector(".buttons");
-    boutons.style.display = "none";
+    boutons.remove();
 
     const modifier = document.createElement("div");
     modifier.className = "modifier";
     modifier.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>
-          <span>modifier</span>`;
-    const portfolio = document.querySelector(".modify");
-    portfolio.prepend(modifier);
+      <span>modifier</span>`;
+    const modify = document.querySelector(".modify");
+    modify.appendChild(modifier);
   }
 }
-displayAdminMode();
+displayAminMode();
 
 //Si utilisateur non connecté
-function closeAdminMode() {
+function closeAminMode() {
   const logout = document.querySelector(".login li:last-child");
   logout.addEventListener("click", function () {
     sessionStorage.removeItem("token");
-    console.log("Utilisateur déconnecté");
+    console.log("Token supprimé");
     const token = sessionStorage.getItem("token");
-    console.log("Token après déconnexion : ", token); //Doit être null
-    if (token === null) {
+    console.log("Token après suppression:", token); // Doit être null
+    if (!token && window.location.href === "login.html") {
+      console.log("Redirection vers index.html");
       window.location.href = "index.html";
-      console.log("Redirection vers la page d'accueil");
     } else {
-      console.log("La redirection n'a pas eu lieu");
+      console.log("La redirection n'a pas été effectuée");
     }
   });
 }
-closeAdminMode();
+closeAminMode();
 
-//Fonction pour ouvrir la modale
+//Ajouter fonction pour aouvrir la modale
 function openModal() {
   const modifierIcone = document.querySelector(".modifier");
-  if (modifierIcone != null) {
-    modifierIcone.addEventListener("click", function () {
-      const modal = document.querySelector(".modal");
-      modal.style.display = "block";
-    });
-  }
+  modifierIcone.addEventListener("click", function () {
+    const modal = document.querySelector(".modal");
+    modal.style.display = "block";
+  });
 }
 openModal();
 
-//Fonction pour fermer la modale
+//Ajouter fonction pour fermer la modale
 function closeModal() {
   const xmark = document.querySelector(".modal__content--icon");
   const modal = document.querySelector(".modal");
   const modalAdd = document.querySelector(".add");
-  const closeXmark = document.querySelector(".add__content--xmark");
-
   xmark.addEventListener("click", function () {
     modal.style.display = "none";
   });
 
+  const closeXmark = document.querySelector(".add__content--xmark");
   closeXmark.addEventListener("click", function () {
     modal.style.display = "none";
   });
 
-  modal.addEventListener("click", function (e) {
-    if (e.target.className == "modal") {
+  modal.addEventListener("click", function (event) {
+    if (event.target.className == "modal") {
       modal.style.display = "none";
     }
   });
 
-  modalAdd.addEventListener("click", function (e) {
-    if (e.target.className == "add") {
+  modalAdd.addEventListener("click", function (event) {
+    if (event.target.className == "add") {
       modalAdd.style.display = "none";
     }
   });
 }
 closeModal();
 
-//Fonctoion pour faire apparaitre modale pour ajouter une oeuvre
+//Fonction pour faire apparaitre deuxième modale displayAddModal()
 function changeModal() {
   const buttonModal = document.querySelector(".modal__content--button");
   const modalAdd = document.querySelector(".add");
   const modal = document.querySelector(".modal");
   const arrowLeft = document.querySelector(".add__content--arrow");
-  const xmark = document.querySelector(".add__content--xmark");
-
+  const xmark = document.querySelector(".add__content--xmark"); // const close = document.querySelector(".modals");
   buttonModal.addEventListener("click", function () {
     modalAdd.style.display = "block";
     modal.style.display = "none";
@@ -109,22 +104,20 @@ function changeModal() {
   });
 
   xmark.addEventListener("click", function () {
-    modalAdd.style.display = "none";
     modal.style.display = "none";
+    modalAdd.style.display = "none";
   });
 }
 changeModal();
 
-//Ajouter les travaux à la modale
-async function addWorks() {
+//Fonctin pour ajouter travaux dans la modal displayGarageModal()
+async function addWork() {
   const modalContainer = document.querySelector(".modal__content--container");
   modalContainer.innerHTML = "";
   const works = await getWorks();
 
   works.forEach((work) => {
-    //création d'une balise dédiée à chaque oeuvre
     const figure = document.createElement("figure");
-    // Création des balises img + leur contenu
     const image = document.createElement("img");
     image.src = work.imageUrl;
     const div = document.createElement("div");
@@ -133,21 +126,21 @@ async function addWorks() {
     trashIcon.className = "fa-solid fa-trash-can";
     trashIcon.id = work.id;
 
-    //On rattache les balises à la section gallery
     div.appendChild(trashIcon);
     figure.appendChild(image);
     figure.appendChild(div);
     modalContainer.appendChild(figure);
   });
-  deleteWork();
+  deleteWorks();
 }
-addWorks();
+addWork();
 
-//Fonction pour supprimer une oeuvre de la modale
-function deleteWork() {
-  const trashIcons = document.querySelectorAll(".fa-trash-can");
-  trashIcons.forEach((trash) => {
-    trash.addEventListener("click", (e) => {
+//Supprimer un travail de la modal
+async function deleteWorks() {
+  const trashAll = document.querySelectorAll(".fa-trash-can");
+  trashAll.forEach((trash) => {
+    trash.addEventListener("click", async (e) => {
+      e.preventDefault();
       const id = trash.id;
       const token = sessionStorage.getItem("token");
 
@@ -155,80 +148,85 @@ function deleteWork() {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+          Authorization: `Bearer ${token}`,
         },
       };
-      fetch("http://localhost:5678/api/works/" + id, init)
-        .then((response) => {
-          if (response.ok) {
-            console.log("Le travail a bien été supprimé");
-            addWorks();
-          } else {
-            console.log("Le delete n'a pas fonctionné");
-          }
-        })
-        .catch((error) => {
-          console.error("Erreur lors de la suppression de l'oeuvre : ", error);
-        });
+
+      try {
+        const response = await fetch(
+          `http://localhost:5678/api/works/${id}`,
+          init
+        );
+        if (response.ok) {
+          console.log("Le travail a été supprimé avec succès");
+          addWork(); // Réactualiser la liste après suppression // Fermer la modale et actualiser les travaux
+
+          document.querySelector(".modal").style.display = "none";
+          const updatedWorks = await getWorks();
+          const sectionGallery = document.querySelector(".gallery");
+          sectionGallery.innerHTML = ""; // Vider la galerie avant de la réafficher
+          displayWorks(updatedWorks); // Afficher les travaux mis à jour
+        } else {
+          console.log("Le delete n'a pas fonctionné");
+        }
+      } catch (error) {
+        console.error(
+          "Une erreur s'est produite lors de la suppression du travail :",
+          error
+        );
+      }
     });
   });
-}
+} //fonction pour faire apparaitre les catégories dans le menu déroulant
 
-//fonction pour afficher les catégories dans le menu déroulant
-async function displayModalCategories() {
-  const select = document.querySelector(".form__content--select");
+async function getCategoriesModal() {
+  const select = document.querySelector("#category");
   const categories = await getCategories();
 
-  if (select != null) {
-    categories.forEach((category) => {
-      const option = document.createElement("option");
-      option.value = category.id;
-      option.innerText = category.name;
-      select.appendChild(option);
-    });
-  }
-}
-displayModalCategories();
-
-//fonction pour prévisualiser une image dans la modale
-function previewImage() {
-  const previewImg = document.querySelector(".form__content--img");
-  const previewLabel = document.querySelector(".form__content--label");
-  const previewInput = document.querySelector(".form__content--input");
-  const previexIcon = document.querySelector(".form__content i");
-  const previewText = document.querySelector(".form__content p");
-
-  previewInput.addEventListener("change", function () {
-    const file = previewInput.files[0];
-    if (file.type.match("image.*")) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        previewImg.src = e.target.result;
-        previewImg.style.display = "block";
-        previewLabel.style.display = "none";
-        previexIcon.style.display = "none";
-        previewText.style.display = "none";
-      };
-      reader.readAsDataURL(file);
-    }
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category.id;
+    option.textContent = category.name;
+    select.appendChild(option);
   });
 }
-previewImage();
+getCategoriesModal(); // prévisualiser une image dans la modal
 
-//Ajout d'une image dans la base de données
-function addImage() {
-  const form = document.querySelector(".form");
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+const previewImage = document.querySelector(".form__content img");
+const previewInput = document.querySelector(".form__content input");
+const previewLabel = document.querySelector(".form__content label");
+const previewIcon = document.querySelector(".form__content i");
+const previewText = document.querySelector(".form__content p");
+
+previewInput.addEventListener("change", function () {
+  const file = previewInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      previewImage.src = event.target.result;
+      previewImage.style.display = "block";
+      previewLabel.style.display = "none";
+      previewIcon.style.display = "none";
+      previewText.style.display = "none";
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+//Faire une requête POST pour ajouter un travail
+function handleFormSubmit() {
+  const form = document.querySelector(".form"); //form.reset(); // Vider le formulaire
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault(); // Empêche le rechargement de la page
 
     const title = document.getElementById("title").value;
-    const category = document.getElementById("category");
+    const category = document.getElementById("category").value;
     const fileInput = document.getElementById("file");
-    const imageFile = fileInput.files[0];
+    const imageFile = fileInput.files[0]; // Créer un FormData pour envoyer le fichier et les autres données
 
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("category", category.value);
+    formData.append("category", category);
     formData.append("image", imageFile);
 
     const token = sessionStorage.getItem("token");
@@ -237,59 +235,60 @@ function addImage() {
       const response = await fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: `Bearer ${token}`,
         },
         body: formData,
       });
 
       if (response.ok) {
-        console.log("Travail ajoutée avec succès");
+        console.log("Le travail a été ajouté avec succès"); // Fermer la modale et actualiser les travaux
         document.querySelector(".add").style.display = "none";
-        addWorks();
+        addWork(); // Met à jour la liste des travaux
+        const updatedWorks = await getWorks();
+        const sectionGallery = document.querySelector(".gallery");
+        sectionGallery.innerHTML = ""; // Vider la galerie avant de la réafficher
+        displayWorks(updatedWorks); // Mettre à jour la galerie avec les nouveaux travaux
       } else {
-        console.log("L'ajout du travail a échoué");
+        console.log("L'ajout du travail a échoué", data);
       }
     } catch (error) {
-      console.error("Erreur lors de l'ajout du travail : ", error);
+      console.error(
+        "Une erreur s'est produite lors de l'ajout du travail :",
+        error
+      );
     }
   });
 }
 
-addImage();
+handleFormSubmit();
 
-//Fonction pour vérifier que tous les inputs du formulaire sont remplis
-
+//Fonction pour vérifier que tous les input sont remplis
 function validateForm() {
   const buttonForm = document.querySelector(".form button");
   const form = document.querySelector(".form");
-  form.addEventListener("input", function () {
-    const title = document.getElementById("title").value;
-    const category = document.getElementById("category").value;
-    const fileInput = document.getElementById("file").files.length;
 
-    //Vérifier s'il y a déjà un message d'erreur
+  form.addEventListener("input", function () {
+    const title = document.getElementById("title").value.trim();
+    const category = document.getElementById("category").value.trim();
+    const fileInput = document.getElementById("file").files.length; // Vérifier s'il y a déjà un message d'erreur
+
     let errorMessage = document.querySelector(".msg-error");
 
     if (title && category && fileInput) {
       buttonForm.classList.add("valid");
-      buttonForm.disabled = false;
+      buttonForm.disabled = false; // Supprimer le message d'erreur s'il existe et que tous les champs sont remplis
 
-      //Supprimer le message d'erreur s'il existe
       if (errorMessage) {
         errorMessage.remove();
       }
     } else {
       buttonForm.classList.remove("valid");
-      buttonForm.disabled = false;
+      buttonForm.disabled = true; // Ajouter un message d'erreur s'il n'existe pas déjà
 
-      //Ajouter un message d'erreur s'il n'existe pas
       if (!errorMessage) {
-        const modalTitle = (document.querySelector(
-          ".add__content--title"
-        ).style.marginBottom = "20px");
         errorMessage = document.createElement("p");
         errorMessage.className = "msg-error";
-        errorMessage.innerText = "Veuillez remplir tous les champs";
+        errorMessage.innerHTML = "Veuillez remplir tous les champs.";
         document.querySelector(".form").prepend(errorMessage);
       }
     }
