@@ -33,7 +33,6 @@
 /*modifier*/
 .modify {
   display: flex;
-  flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5em;
@@ -44,7 +43,7 @@
   cursor: pointer;
   margin-bottom: 1.6em;
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
 /*Message erreur modale*/
