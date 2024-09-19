@@ -20,6 +20,12 @@ async function submitForm() {
     // Création de la charge utile au format JSON
     const chargeUtile = JSON.stringify(data);
 
+    // Suppression du message d'erreur existant (s'il existe)
+    const existingErrorMessage = document.querySelector(".erreur-login");
+    if (existingErrorMessage) {
+      existingErrorMessage.remove();
+    }
+
     try {
       const response = await fetch("http://localhost:5678/api/users/login", {
         method: "POST",
