@@ -1,20 +1,28 @@
 //Récupérer les travaux à partir du backend
-export async function getWorks() {
-  const travaux = await fetch("http://localhost:5678/api/works");
-  const works = await travaux.json();
-  return works;
-}
+export const getWorks = async () => {
+  try {
+    const travaux = await fetch("http://localhost:5678/api/works");
+    const works = await travaux.json();
+    return works;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const works = await getWorks();
 console.log(works);
 
 //Récupérer les catégories à partir du backend
 
-export async function getCategories() {
-  const group = await fetch("http://localhost:5678/api/categories");
-  const categories = await group.json();
-  return categories;
-}
+export const getCategories = async () => {
+  try {
+    const group = await fetch("http://localhost:5678/api/categories");
+    const categories = await group.json();
+    return categories;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const categories = await getCategories();
 

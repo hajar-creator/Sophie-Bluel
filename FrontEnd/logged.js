@@ -1,13 +1,13 @@
 import { getWorks, getCategories, displayWorks } from "./script.js";
 //Si utilisateur connecté
-function displayAminMode() {
+function displayAdminMode() {
   let token = sessionStorage.getItem("token");
   const header = document.querySelector("header");
 
   if (token) {
     //Ajouter bannière
     const addBanner = document.createElement("div");
-    addBanner.className = "banner";
+    addBanner.classList.add("banner");
     addBanner.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>
     <span>Mode édition</span>`;
     header.prepend(addBanner); //Ajouter style au header
@@ -21,14 +21,14 @@ function displayAminMode() {
     boutons.remove();
 
     const modifier = document.createElement("div");
-    modifier.className = "modifier";
+    modifier.classList.add("modifier");
     modifier.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>
       <span>modifier</span>`;
     const modify = document.querySelector(".modify");
     modify.appendChild(modifier);
   }
 }
-displayAminMode();
+displayAdminMode();
 
 //Si utilisateur non connecté
 function closeAminMode() {
@@ -51,10 +51,12 @@ closeAminMode();
 //Ajouter fonction pour aouvrir la modale
 function openModal() {
   const modifierIcone = document.querySelector(".modifier");
-  modifierIcone.addEventListener("click", function () {
-    const modal = document.querySelector(".modal");
-    modal.style.display = "block";
-  });
+  if (modifierIcone) {
+    modifierIcone.addEventListener("click", function () {
+      const modal = document.querySelector(".modal");
+      modal.style.display = "block";
+    });
+  }
 }
 openModal();
 
@@ -85,7 +87,7 @@ function closeModal() {
   });
 }
 closeModal();
-
+const buttonForm = document.querySelector(".form button");
 //Fonction pour faire apparaitre deuxième modale displayAddModal()
 function changeModal() {
   const buttonModal = document.querySelector(".modal__content--button");
@@ -96,6 +98,9 @@ function changeModal() {
   buttonModal.addEventListener("click", function () {
     modalAdd.style.display = "block";
     modal.style.display = "none";
+    resetForm();
+
+    buttonForm.disabled = true;
   });
 
   arrowLeft.addEventListener("click", function () {
@@ -177,11 +182,14 @@ async function deleteWorks() {
       }
     });
   });
-} //fonction pour faire apparaitre les catégories dans le menu déroulant
+}
+//fonction pour faire apparaitre les catégories dans le menu déroulant
 
 async function getCategoriesModal() {
   const select = document.querySelector("#category");
   const categories = await getCategories();
+  const option = document.createElement("option");
+  select.appendChild(option);
 
   categories.forEach((category) => {
     const option = document.createElement("option");
@@ -261,6 +269,19 @@ function handleFormSubmit() {
 }
 
 handleFormSubmit();
+//Méthode pour réinitialiser les inputs du formulaire
+const resetForm = () => {
+  document.getElementById("title").value = "";
+  document.getElementById("category").value = "";
+  const fileInput = document.getElementById("file");
+  fileInput.value = "";
+
+  previewImage.src = "";
+  previewImage.style.display = "none";
+  previewLabel.style.display = "block";
+  previewIcon.style.display = "block";
+  previewText.style.display = "block";
+};
 
 //Fonction pour vérifier que tous les input sont remplis
 function validateForm() {
